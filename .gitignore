@@ -1,0 +1,36 @@
+# Chrome拡張機能のプライベートキー
+*.pem
+
+# パッケージファイル
+*.crx
+*.zip
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# エディタ設定
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ログファイル
+*.log
+
+# 環境変数ファイル
+.env
+.env.local
+.env.*.local
+
+# 一時ファイル
+*.tmp
+*.temp
+
+# Node modules (将来的に使用する可能性がある場合)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
