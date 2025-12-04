@@ -22,11 +22,18 @@ jobs:
       - name: Load security review prompt
         id: load-prompt
         run: |
+          # Extract PR number from URL
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          PR_NUMBER=$(basename "$PR_URL")
+
+          echo "PR URL: $PR_URL"
+          echo "Extracted PR Number: $PR_NUMBER"
+
           # Read the security review prompt template
           PROMPT_TEMPLATE=$(cat .claude/commands/chrome-extensions-review.md)
 
-          # Replace $ARGS with the PR URL
-          PROMPT_CONTENT=$(echo "$PROMPT_TEMPLATE" | sed "s|\$ARGS|${{ github.event.pull_request.html_url }}|g")
+          # Replace $ARGS with the PR number
+          PROMPT_CONTENT=$(echo "$PROMPT_TEMPLATE" | sed "s|\$ARGS|$PR_NUMBER|g")
 
           # Output the processed prompt for use in the next step
           echo "SECURITY_REVIEW_PROMPT<<EOF" >> $GITHUB_ENV
