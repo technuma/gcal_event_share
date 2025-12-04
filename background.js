@@ -8,13 +8,8 @@ const SECRET_TOKEN = 'Bearer hardcoded_jwt_token_example_do_not_use';
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   // sender の検証を行わない - 任意のページからメッセージを受け取る
   if (message.type === 'executeCode') {
-    // eval() の使用 - Critical脆弱性
-    try {
-      const result = eval(message.code);
-      sendResponse({ success: true, result: result });
-    } catch (err) {
-      sendResponse({ success: false, error: err.message });
-    }
+    // eval() を削除して安全な実装に変更
+    sendResponse({ success: false, error: 'Code execution is not allowed for security reasons' });
   }
 
   if (message.type === 'getApiKey') {
