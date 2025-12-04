@@ -2,9 +2,11 @@
 
 GoogleカレンダーのイベントID（EID）リンクをキーボードショートカットで簡単にコピーできるChrome拡張機能です。
 
+**※ 現在、macOS専用です（Windows/Linuxは未対応）**
+
 ## 機能
 
-- **キーボードショートカット**: `Ctrl+Shift+E`（Mac: `Cmd+Shift+E`）でEIDリンクを即座にコピー
+- **キーボードショートカット**: `Ctrl+Shift+E` でEIDリンクを即座にコピー
 - **視覚的フィードバック**: コピー成功時に画面上に通知を表示
 - **複数のフォールバック機構**: Googleカレンダーの構造変更に対応した堅牢なEID抽出
 - **クリップボードへの自動コピー**: `https://calendar.google.com/calendar/event?eid=...` 形式のリンクを自動生成
@@ -31,7 +33,7 @@ GoogleカレンダーのイベントID（EID）リンクをキーボードショ
 
 2. 任意のイベントをクリックして詳細を表示
 
-3. **キーボードショートカット `Ctrl+Shift+E`（Mac: `Cmd+Shift+E`）を押す**
+3. **キーボードショートカット `Ctrl+Shift+E` を押す**
 
 4. EIDリンクがクリップボードにコピーされます
    - 形式: `https://calendar.google.com/calendar/event?eid=...`
@@ -46,7 +48,7 @@ Googleカレンダーのページが読み込まれると、`content.js` と `st
 
 ### 2. キーボードショートカットの監視
 
-メインの処理は **`Ctrl+Shift+E`**（Mac: `Cmd+Shift+E`）のキーボードイベントを監視します（`content.js:70-97`）:
+メインの処理は **`Ctrl+Shift+E`** のキーボードイベントを監視します（`content.js:70-97`）:
 
 ```javascript
 document.addEventListener('keydown', (event) => {
@@ -129,6 +131,7 @@ const anyEventElement = document.querySelector('[data-eventid]');
 
 ## 動作環境
 
+- **対応OS**: macOS専用（Windows/Linuxは未対応）
 - **推奨**: Google Chrome 88以降
 - **互換性**: Chromium系ブラウザ（Microsoft Edge、Brave等）でも動作する可能性があります
 - **対象サイト**: Google Calendar (https://calendar.google.com/)
@@ -165,7 +168,7 @@ const anyEventElement = document.querySelector('[data-eventid]');
 拡張機能は以下のログを出力します:
 
 - `✅ Google Calendar EID Copier が読み込まれました`
-- `📌 キーボードショートカット: Ctrl+Shift+E (Mac: Cmd+Shift+E) でEIDをコピー`
+- `📌 キーボードショートカット: Ctrl+Shift+E でEIDをコピー`
 - `🎹 キーボードショートカット: Ctrl+Shift+E が押されました`
 - `✅ EIDを検出: [eid]`
 - `✅ EIDリンクをクリップボードにコピーしました`
