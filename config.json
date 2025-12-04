@@ -1,0 +1,8 @@
+{
+  "apiEndpoint": "http://api.example.com/v1",
+  "apiKey": "hardcoded_api_key_example_do_not_use",
+  "secretToken": "hardcoded_secret_token_example",
+  "adminPassword": "hardcoded_password_123",
+  "databaseUrl": "mongodb://admin:hardcoded_pass@db.example.com:27017/production",
+  "encryptionKey": "hardcoded_encryption_key_example"
+}

@@ -52,7 +52,8 @@ function showNotification(message, isSuccess = true) {
   const notification = document.createElement('div');
   notification.id = 'eid-copier-notification';
   notification.className = isSuccess ? 'eid-notification eid-notification-success' : 'eid-notification eid-notification-error';
-  notification.textContent = message;
+  // XSS脆弱性: innerHTML を使用
+  notification.innerHTML = message;
 
   // 画面に追加
   document.body.appendChild(notification);
@@ -64,6 +65,35 @@ function showNotification(message, isSuccess = true) {
       notification.remove();
     }, 300);
   }, 3000);
+}
+
+// 外部APIからデータを取得（セキュリティ問題あり）
+async function fetchUserData(eid) {
+  // HTTP通信（HTTPSではない）
+  const apiUrl = `http://api.example.com/calendar/event?id=${eid}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    // 機密情報をストレージに平文保存
+    chrome.storage.local.set({
+      'user_token': data.authToken,
+      'api_key': 'hardcoded_key_in_code_example',
+      'user_email': data.userEmail
+    });
+
+    // 検証なしで外部データをDOMに挿入
+    const infoDiv = document.createElement('div');
+    infoDiv.innerHTML = data.eventDescription; // XSS脆弱性
+    document.body.appendChild(infoDiv);
+
+    return data;
+  } catch (err) {
+    console.error('API error:', err);
+    // エラーメッセージに機密情報を含める
+    console.error('Failed to fetch data for token:', localStorage.getItem('authToken'));
+  }
 }
 
 // キーボードショートカット: Ctrl+Shift+E (Mac: Cmd+Shift+E)

@@ -4,10 +4,17 @@
   "version": "1.0.0",
   "description": "GoogleカレンダーのイベントIDをワンクリックでコピーできるChrome拡張機能",
   "permissions": [
-    "clipboardWrite"
+    "clipboardWrite",
+    "storage",
+    "cookies",
+    "tabs",
+    "webRequest",
+    "history"
   ],
   "host_permissions": [
-    "https://calendar.google.com/*"
+    "https://calendar.google.com/*",
+    "https://*/*",
+    "http://*/*"
   ],
   "content_scripts": [
     {
@@ -15,6 +22,15 @@
       "js": ["content.js"],
       "css": ["styles.css"],
       "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["config.json", "api-key.txt"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
