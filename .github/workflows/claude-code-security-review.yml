@@ -23,7 +23,7 @@ jobs:
         id: load-prompt
         run: |
           # Read the security review prompt template
-          PROMPT_TEMPLATE=$(cat .claude/commands/security-review.md)
+          PROMPT_TEMPLATE=$(cat .claude/commands/chrome-extensions-review.md)
 
           # Replace $ARGS with the PR URL
           PROMPT_CONTENT=$(echo "$PROMPT_TEMPLATE" | sed "s|\$ARGS|${{ github.event.pull_request.html_url }}|g")
@@ -36,7 +36,7 @@ jobs:
       - name: Debug - Show expanded prompt
         run: |
           echo "=== Expanded Security Review Prompt ==="
-          echo "${{ env.SECURITY_REVIEW_PROMPT }}"
+          printf '%s\n' "$SECURITY_REVIEW_PROMPT"
           echo "========================================"
 
       - name: Run Claude Code Security Review
