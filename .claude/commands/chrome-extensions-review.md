@@ -1,6 +1,6 @@
 以下のプルリクエストに対して、Chrome Extension に特化したセキュリティレビューを日本語で実施し、詳細なフィードバックを提供してください。
 
-PR URL: $ARGS
+PR番号: #$ARGS
 
 まず、`gh pr view $ARGS` と `gh pr diff $ARGS` を使用してプルリクエストの詳細と変更内容を確認してください。
 
